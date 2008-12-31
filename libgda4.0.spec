@@ -19,8 +19,8 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 3.99.6
-Release: %mkrel 2
+Version: 3.99.7
+Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
