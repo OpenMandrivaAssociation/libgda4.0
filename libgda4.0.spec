@@ -19,7 +19,7 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 3.99.7
+Version: 3.99.8
 Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
@@ -277,6 +277,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 %doc AUTHORS COPYING README
 %{_bindir}/*
+%_mandir/man1/*
 %dir %{_sysconfdir}/libgda-%dirver
 %config(noreplace) %_sysconfdir/libgda-%dirver/sales_test.db
 %config(noreplace) %{_sysconfdir}/libgda-%dirver/config
