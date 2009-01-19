@@ -19,11 +19,13 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 3.99.8
+Version: 3.99.9
 Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
+# http://bugzilla.gnome.org/show_bug.cgi?id=568353
+Patch: libgda-3.99.9-missing.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db4-devel
@@ -42,6 +44,8 @@ BuildRequires:	scrollkeeper
 BuildRequires:  sqlite3-devel
 BuildRequires:  unixODBC-devel
 BuildRequires:	libxbase-devel
+BuildRequires: libsoup-devel
+BuildRequires: java-devel
 BuildRequires: automake1.8
 BuildRequires: libcheck-devel
 %if %build_mysql
@@ -230,8 +234,29 @@ developed based on it.
 
 This package includes the GDA sqlite provider
 
+
+%package        jdbc
+Summary:	GDA Java Database Provider
+Group:		Databases
+Requires:	%{name} = %{version}
+
+%description	jdbc
+GNU Data Access is an attempt to provide uniform access to
+different kinds of data sources (databases, information
+servers, mail spools, etc).
+It is a complete architecture that provides all you need to
+access your data.
+
+libgda was part of the GNOME-DB project
+(http://www.gnome-db.org/), but has been
+separated from it to allow non-GNOME applications to be
+developed based on it.
+
+This package includes the GDA Java Database provider.
+
 %prep
 %setup -q -n %{pkgname}-%{version}
+%patch -p1
 libtoolize --copy --force
 aclocal
 autoconf
@@ -333,3 +358,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgda-%dirver/providers/libgda-mdb.so
 %endif
 
+%files jdbc
+%defattr(-, root, root)
+%{_libdir}/libgda-%dirver/providers/libgda-jdbc.so
+%{_libdir}/libgda-%dirver/providers/gdaprovider-4.0.jar
