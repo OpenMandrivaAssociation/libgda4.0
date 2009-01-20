@@ -45,7 +45,7 @@ BuildRequires:  sqlite3-devel
 BuildRequires:  unixODBC-devel
 BuildRequires:	libxbase-devel
 BuildRequires: libsoup-devel
-BuildRequires: java-devel
+BuildRequires: java-1.6.0-devel
 BuildRequires: automake1.8
 BuildRequires: libcheck-devel
 %if %build_mysql
