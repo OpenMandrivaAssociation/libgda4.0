@@ -24,8 +24,6 @@ Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
-# http://bugzilla.gnome.org/show_bug.cgi?id=568353
-Patch: libgda-3.99.9-missing.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db4-devel
@@ -256,11 +254,6 @@ This package includes the GDA Java Database provider.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
-%patch -p1
-libtoolize --copy --force
-aclocal
-autoconf
-automake
 
 %build
 %configure2_5x \
