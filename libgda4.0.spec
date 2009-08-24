@@ -19,12 +19,12 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.0.2
+Version: 4.0.3
 Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
-Patch: libgda-3.99.13-format-string.patch
+Patch: libgda-4.0.3-format-string.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db4-devel
