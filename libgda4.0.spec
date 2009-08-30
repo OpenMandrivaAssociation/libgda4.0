@@ -19,7 +19,7 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.0.3
+Version: 4.0.4
 Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
