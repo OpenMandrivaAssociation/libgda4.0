@@ -20,7 +20,7 @@
 Summary:	GNU Data Access
 Name: 		%{name}
 Version: 4.0.4
-Release: %mkrel 1
+Release: %mkrel 2
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
@@ -44,7 +44,9 @@ BuildRequires:  sqlite3-devel
 BuildRequires:  unixODBC-devel
 BuildRequires:	libxbase-devel
 BuildRequires: libsoup-devel
+%ifnarch %arm %mips
 BuildRequires: java-1.6.0-devel
+%endif
 BuildRequires: automake1.8
 BuildRequires: check-devel
 %if %build_mysql
@@ -234,6 +236,7 @@ developed based on it.
 This package includes the GDA sqlite provider
 
 
+%ifnarch %arm %mips
 %package        jdbc
 Summary:	GDA Java Database Provider
 Group:		Databases
@@ -252,6 +255,7 @@ separated from it to allow non-GNOME applications to be
 developed based on it.
 
 This package includes the GDA Java Database provider.
+%endif
 
 %prep
 %setup -q -n %{pkgname}-%{version}
@@ -353,7 +357,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgda-%dirver/providers/libgda-mdb.so
 %endif
 
+%ifnarch %arm %mips
 %files jdbc
 %defattr(-, root, root)
 %{_libdir}/libgda-%dirver/providers/libgda-jdbc.so
 %{_libdir}/libgda-%dirver/providers/gdaprovider-4.0.jar
+%endif
