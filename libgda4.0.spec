@@ -15,12 +15,11 @@
 
 %define libname	%mklibname %{oname}%{api}_ %major 
 %define libnamedev	%mklibname -d %{oname}%{api}
-%define basiclibname	%mklibname %{oname}%{api}
 
 Summary:	GNU Data Access
 Name: 		%{name}
 Version: 4.0.4
-Release: %mkrel 2
+Release: %mkrel 3
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
@@ -77,7 +76,6 @@ Drivers for the supported databases are included in the gda2.0-* packages.
 %package -n	%{libname}
 Summary:	GNU Data Access Development
 Group: 		System/Libraries
-Provides:	%basiclibname = %{version}-%{release}
 Requires:	%name >= %version
 Requires:	%name-sqlite >= %version
 
