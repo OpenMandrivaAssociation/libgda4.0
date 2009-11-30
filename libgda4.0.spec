@@ -18,12 +18,12 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.0.5
+Version: 4.1.3
 Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
-Patch: libgda-4.0.3-format-string.patch
+Patch: libgda-4.1.2-format-string.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db4-devel
@@ -257,7 +257,7 @@ This package includes the GDA Java Database provider.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
-%patch -p1
+%patch -p1 -b .format-strings
 
 %build
 %configure2_5x \
@@ -280,7 +280,7 @@ rm -rf $RPM_BUILD_ROOT
 %{makeinstall_std}
 
 # remove unneeded files
-rm -f $RPM_BUILD_ROOT%{_libdir}/libgda-%dirver/providers/*.{a,la}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libgda-%dirver/*/*.{a,la}
 
 %{find_lang} %{pkgname}-%{api} --with-gnome
 
@@ -303,21 +303,30 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/libgda-%dirver
 %config(noreplace) %_sysconfdir/libgda-%dirver/sales_test.db
 %config(noreplace) %{_sysconfdir}/libgda-%dirver/config
+%{_datadir}/applications/gda-browser-%api.desktop
+%{_datadir}/applications/gda-control-center-%api.desktop
+%{_datadir}/pixmaps/gda*
 %{_datadir}/libgda-%dirver
 %dir %{_libdir}/libgda-%dirver
+%dir %{_libdir}/libgda-%dirver/plugins
 %dir %{_libdir}/libgda-%dirver/providers
+%{_libdir}/libgda-%dirver/plugins/*.xml
+%{_libdir}/libgda-%dirver/plugins/libgda-ui-plugins.so
 
 %files -n %{libname}
 %defattr(-, root, root)
 %{_libdir}/libgda-%{api}.so.%{major}*
 %{_libdir}/libgda-report-%{api}.so.%{major}*
+%{_libdir}/libgda-ui-%{api}.so.%{major}*
 %_libdir/libgda-xslt-%{api}.so.%{major}*
 
 %files -n %{libnamedev}
 %defattr(-, root, root)
 %doc %_datadir/gtk-doc/html/libgda-%dirver/
+%doc %_datadir/gtk-doc/html/gda-browser
 %{_libdir}/libgda-%{api}.so
 %{_libdir}/libgda-report-%{api}.so
+%{_libdir}/libgda-ui-%{api}.so
 %_libdir/libgda-xslt-%{api}.so
 %{_libdir}/lib*.a
 %attr(644,root,root) %{_libdir}/lib*.la
