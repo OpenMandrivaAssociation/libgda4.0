@@ -19,11 +19,14 @@
 Summary:	GNU Data Access
 Name: 		%{name}
 Version: 4.1.3
-Release: %mkrel 1
+Release: %mkrel 2
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
 Patch: libgda-4.1.2-format-string.patch
+#gw install header needed by gnumeric
+#https://bugzilla.gnome.org/show_bug.cgi?id=604690
+Patch1: libgda-4.1.3-install-control-center-header.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db4-devel
@@ -258,6 +261,8 @@ This package includes the GDA Java Database provider.
 %prep
 %setup -q -n %{pkgname}-%{version}
 %patch -p1 -b .format-strings
+%patch1 -p1 -b .install-control-center-header
+autoreconf -fi
 
 %build
 %configure2_5x \
