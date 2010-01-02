@@ -19,7 +19,7 @@
 Summary:	GNU Data Access
 Name: 		%{name}
 Version: 4.1.3
-Release: %mkrel 2
+Release: %mkrel 3
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
@@ -32,7 +32,10 @@ BuildRequires:	bison
 BuildRequires:	db4-devel
 BuildRequires:	flex
 BuildRequires:	gdbm-devel
-BuildRequires:	glib2-devel
+BuildRequires:  gtk+2-devel
+BuildRequires:  unique-devel
+#gw not packaged yet:
+#BuildRequires:  json-glib-devel
 BuildRequires:	libxslt-devel >= 1.0.9
 BuildRequires:	ncurses-devel
 BuildRequires:  openldap2-devel
@@ -45,7 +48,8 @@ BuildRequires:	scrollkeeper
 BuildRequires:  sqlite3-devel
 BuildRequires:  unixODBC-devel
 BuildRequires:	libxbase-devel
-BuildRequires: libsoup-devel
+BuildRequires:  libsoup-devel
+BuildRequires:  iso-codes
 %ifnarch %arm %mips
 BuildRequires: java-1.6.0-devel
 %endif
@@ -61,6 +65,7 @@ BuildRequires:	gtk-doc
 #Requires(post):		scrollkeeper
 #Requires(postun):	scrollkeeper
 URL: 		http://www.gnome-db.org/
+Requires: iso-codes
 
 %description
 GNU Data Access is an attempt to provide uniform access to
