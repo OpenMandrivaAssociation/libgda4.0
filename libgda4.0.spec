@@ -36,6 +36,8 @@ BuildRequires:  gtk+2-devel
 BuildRequires:  unique-devel
 #gw only for make check:
 BuildRequires:  libjson-glib-devel
+BuildRequires:  %name
+#
 BuildRequires:	libxslt-devel >= 1.0.9
 BuildRequires:	ncurses-devel
 BuildRequires:  openldap2-devel
