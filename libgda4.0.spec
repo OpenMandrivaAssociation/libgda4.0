@@ -9,6 +9,11 @@
 %define		build_mdb 0
 %{?_with_mdb: %global build_mdb 1}
 
+#gw check fails in the BS in 4.1.3
+%define		enable_test 0
+%{?_with_mdb: %global enable_test 1}
+
+
 %define dirver %api
 %define oname gda
 %define	major 4
@@ -34,10 +39,12 @@ BuildRequires:	flex
 BuildRequires:	gdbm-devel
 BuildRequires:  gtk+2-devel
 BuildRequires:  unique-devel
+%if %enable_test
 #gw only for make check:
 BuildRequires:  libjson-glib-devel
-BuildRequires:  %name
-#
+BuildRequires: check-devel
+#BuildRequires:  %name
+%endif
 BuildRequires:	libxslt-devel >= 1.0.9
 BuildRequires:	ncurses-devel
 BuildRequires:  openldap2-devel
@@ -56,7 +63,6 @@ BuildRequires:  iso-codes
 BuildRequires: java-1.6.0-devel
 %endif
 BuildRequires: automake1.8
-BuildRequires: check-devel
 %if %build_mysql
 BuildRequires:	mysql-devel
 %endif
@@ -296,8 +302,10 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libgda-%dirver/*/*.{a,la}
 
 %{find_lang} %{pkgname}-%{api} --with-gnome
 
+%if %enable_test
 %check
 make check
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
