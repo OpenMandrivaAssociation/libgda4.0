@@ -19,11 +19,11 @@
 Summary:	GNU Data Access
 Name: 		%{name}
 Version: 4.1.3
-Release: %mkrel 3
+Release: %mkrel 4
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
-Patch: libgda-4.1.2-format-string.patch
+Patch: libgda-4.1.3-format-strings.patch
 #gw install header needed by gnumeric
 #https://bugzilla.gnome.org/show_bug.cgi?id=604690
 Patch1: libgda-4.1.3-install-control-center-header.patch
@@ -34,8 +34,8 @@ BuildRequires:	flex
 BuildRequires:	gdbm-devel
 BuildRequires:  gtk+2-devel
 BuildRequires:  unique-devel
-#gw not packaged yet:
-#BuildRequires:  json-glib-devel
+#gw only for make check:
+BuildRequires:  libjson-glib-devel
 BuildRequires:	libxslt-devel >= 1.0.9
 BuildRequires:	ncurses-devel
 BuildRequires:  openldap2-devel
@@ -295,7 +295,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libgda-%dirver/*/*.{a,la}
 %{find_lang} %{pkgname}-%{api} --with-gnome
 
 %check
-#make check
+make check
 
 %clean
 rm -rf $RPM_BUILD_ROOT
