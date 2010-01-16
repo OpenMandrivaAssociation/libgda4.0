@@ -23,15 +23,15 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.1.3
-Release: %mkrel 4
+Version: 4.1.4
+Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
-Patch: libgda-4.1.3-format-strings.patch
+Patch: libgda-4.1.4-format-strings.patch
 #gw install header needed by gnumeric
 #https://bugzilla.gnome.org/show_bug.cgi?id=604690
-Patch1: libgda-4.1.3-install-control-center-header.patch
+Patch1: libgda-4.1.4-install-control-center-header.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db4-devel
@@ -59,6 +59,7 @@ BuildRequires:  unixODBC-devel
 BuildRequires:	libxbase-devel
 BuildRequires:  libsoup-devel
 BuildRequires:  iso-codes
+BuildRequires:  gobject-introspection-devel
 %ifnarch %arm %mips
 BuildRequires: java-1.6.0-devel
 %endif
@@ -326,12 +327,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/gda-browser-%api.desktop
 %{_datadir}/applications/gda-control-center-%api.desktop
 %{_datadir}/pixmaps/gda*
+%_datadir/icons/hicolor/*/apps/gda-control-center.*
 %{_datadir}/libgda-%dirver
 %dir %{_libdir}/libgda-%dirver
 %dir %{_libdir}/libgda-%dirver/plugins
 %dir %{_libdir}/libgda-%dirver/providers
 %{_libdir}/libgda-%dirver/plugins/*.xml
 %{_libdir}/libgda-%dirver/plugins/libgda-ui-plugins.so
+%{_libdir}/libgda-%dirver/providers/libgda-web.so
 
 %files -n %{libname}
 %defattr(-, root, root)
@@ -339,6 +342,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgda-report-%{api}.so.%{major}*
 %{_libdir}/libgda-ui-%{api}.so.%{major}*
 %_libdir/libgda-xslt-%{api}.so.%{major}*
+%_libdir/girepository-1.0/Gda-%{api}.typelib
 
 %files -n %{libnamedev}
 %defattr(-, root, root)
