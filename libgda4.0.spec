@@ -10,7 +10,7 @@
 %{?_with_mdb: %global build_mdb 1}
 
 #gw check fails in the BS in 4.1.3
-%define		enable_test 0
+%define		enable_test 1
 %{?_with_mdb: %global enable_test 1}
 
 
