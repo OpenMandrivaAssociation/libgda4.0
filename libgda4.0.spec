@@ -71,6 +71,7 @@ BuildRequires:	mysql-devel
 BuildRequires:	freetds-devel
 %endif
 BuildRequires:	gtk-doc
+BuildRequires:	gnome-doc-utils
 #Requires(post):		scrollkeeper
 #Requires(postun):	scrollkeeper
 URL: 		http://www.gnome-db.org/
