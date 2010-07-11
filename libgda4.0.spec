@@ -23,8 +23,8 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.1.4
-Release: %mkrel 3
+Version: 4.1.7
+Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
@@ -32,8 +32,6 @@ Patch0: libgda-4.1.4-format-strings.patch
 #gw install header needed by gnumeric
 #https://bugzilla.gnome.org/show_bug.cgi?id=604690
 Patch1: libgda-4.1.4-install-control-center-header.patch
-#gw from git, install missing header libgda.h
-Patch2: libgda-install-libgda.h.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db4-devel
@@ -344,6 +342,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgda-ui-%{api}.so.%{major}*
 %_libdir/libgda-xslt-%{api}.so.%{major}*
 %_libdir/girepository-1.0/Gda-%{api}.typelib
+%_libdir/girepository-1.0/Gdaui-%{api}.typelib
 
 %files -n %{libnamedev}
 %defattr(-, root, root)
@@ -357,6 +356,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) %{_libdir}/lib*.la
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
+%_datadir/gir-1.0/Gda-%api.gir
+%_datadir/gir-1.0/Gdaui-%api.gir
+%_datadir/gnome/help/gda-browser
 
 %files sqlite
 %defattr(-, root, root)
