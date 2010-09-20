@@ -23,7 +23,7 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.1.8
+Version: 4.1.11
 Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
@@ -335,6 +335,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgda-%dirver/plugins/*.xml
 %{_libdir}/libgda-%dirver/plugins/libgda-ui-plugins.so
 %{_libdir}/libgda-%dirver/providers/libgda-web.so
+%{_libdir}/libgda-%dirver/providers/libgda-sqlcipher.so
 
 %files -n %{libname}
 %defattr(-, root, root)
