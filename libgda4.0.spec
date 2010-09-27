@@ -23,7 +23,7 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.1.11
+Version: 4.2.0
 Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
@@ -32,6 +32,7 @@ Patch0: libgda-4.1.4-format-strings.patch
 #gw install header needed by gnumeric
 #https://bugzilla.gnome.org/show_bug.cgi?id=604690
 Patch1: libgda-4.1.4-install-control-center-header.patch
+Patch2: libgda-fix-configure.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db4-devel
