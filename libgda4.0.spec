@@ -34,7 +34,7 @@ Patch0: libgda-4.2.1-format-strings.patch
 Patch1: libgda-4.1.4-install-control-center-header.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
-BuildRequires:	db51-devel
+BuildRequires:	db4-devel
 BuildRequires:	flex
 BuildRequires:	gdbm-devel
 BuildRequires:  gtk+2-devel
@@ -289,7 +289,7 @@ autoreconf -fi
 %if !%build_mdb
 	--with-mdb=no \
 %endif
-	--without-firebird
+	--without-firebird --with-bdb=%_prefix --with-bdb-libdir-name=%_lib
 
 make
 
