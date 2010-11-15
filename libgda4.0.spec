@@ -56,7 +56,7 @@ BuildRequires:	readline-devel
 BuildRequires:	scrollkeeper
 BuildRequires:  sqlite3-devel
 BuildRequires:  unixODBC-devel
-BuildRequires:	libxbase-devel
+BuildRequires:	xbase-devel
 BuildRequires:  libsoup-devel
 BuildRequires:  iso-codes
 BuildRequires:  gobject-introspection-devel
