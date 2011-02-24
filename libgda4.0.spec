@@ -86,7 +86,7 @@ libgda was part of the GNOME-DB project
 separated from it to allow non-GNOME applications to be
 developed based on it.
 
-Drivers for the supported databases are included in the gda2.0-* packages.
+Drivers for the supported databases are included in the libgda4.0-* packages.
 
 %package -n	%{libname}
 Summary:	GNU Data Access Development
