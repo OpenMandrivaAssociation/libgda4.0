@@ -23,11 +23,11 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.2.7
+Version: 4.2.8
 Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.xz
 Patch0: libgda-4.2.1-format-strings.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
@@ -270,6 +270,25 @@ developed based on it.
 This package includes the GDA Java Database provider.
 %endif
 
+%package	ldap
+Summary:	GDA LDAP Provider
+Group:		Databases
+Requires:	%{name} = %{version}
+
+%description	ldap
+GNU Data Access is an attempt to provide uniform access to
+different kinds of data sources (databases, information
+servers, mail spools, etc).
+It is a complete architecture that provides all you need to
+access your data.
+
+libgda was part of the GNOME-DB project
+(http://www.gnome-db.org/), but has been
+separated from it to allow non-GNOME applications to be
+developed based on it.
+
+This package includes the GDA LDAP provider
+
 %prep
 %setup -q -n %{pkgname}-%{version}
 %apply_patches
@@ -396,3 +415,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgda-%dirver/providers/libgda-jdbc.so
 %{_libdir}/libgda-%dirver/providers/gdaprovider-4.0.jar
 %endif
+
+%files ldap
+%defattr(-, root, root)
+%{_libdir}/libgda-%dirver/providers/libgda-ldap.so
