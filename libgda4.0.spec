@@ -23,7 +23,7 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.2.8
+Version: 4.2.9
 Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
