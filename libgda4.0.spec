@@ -23,12 +23,11 @@
 
 Summary:	GNU Data Access
 Name: 		%{name}
-Version: 4.2.9
-Release: %mkrel 2
+Version: 4.2.10
+Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.xz
-Patch0: libgda-4.2.1-format-strings.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db5-devel
