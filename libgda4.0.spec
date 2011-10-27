@@ -28,6 +28,7 @@ Release: %mkrel 1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.xz
+Patch0: libgda-4.2.10-fix-linking.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	db5-devel
@@ -291,7 +292,9 @@ This package includes the GDA LDAP provider
 %prep
 %setup -q -n %{pkgname}-%{version}
 %apply_patches
-#autoreconf -fi
+
+#gw patch0:
+autoreconf -fi
 
 %build
 %configure2_5x \
