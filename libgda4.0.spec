@@ -28,7 +28,7 @@ Release:	1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.xz
-Patch0: libgda-4.2.10-fix-linking.patch
+Patch0: libgda-4.2.12-fix-linking.patch
 
 BuildRequires:	bison
 BuildRequires:	db-devel
@@ -357,7 +357,6 @@ make check
 %{_libdir}/libgda-report-%{api}.so
 %{_libdir}/libgda-ui-%{api}.so
 %{_libdir}/libgda-xslt-%{api}.so
-%attr(644,root,root) %{_libdir}/lib*.la
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
 %{_datadir}/gir-1.0/Gda-%api.gir
