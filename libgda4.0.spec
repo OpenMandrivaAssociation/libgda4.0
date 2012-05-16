@@ -1,7 +1,3 @@
-%define api 4.0
-%define pkgname libgda
-%define name %{pkgname}%{api}
-
 %define build_mysql 1
 %{?_with_mysql: %global build_mysql 1}
 %define build_freetds 0
@@ -14,65 +10,61 @@
 %{?_with_mdb: %global enable_test 1}
 
 
-%define dirver %api
-%define oname gda
-%define	major 4
+%define api		4.0
+%define	major 		4
+%define pkgname 	libgda
+%define oname 		gda
 
-%define libname %mklibname %{oname}%{api}_ %major 
-%define develname %mklibname -d %{oname}%{api}
+%define libname		%mklibname %{oname} %{api} %major 
+%define develname	%mklibname -d %{oname} %{api}
 
 Summary:	GNU Data Access
-Name: 		%{name}
-Version:	4.2.12
+Name: 		%{pkgname}%{api}
+Version:	4.2.13
 Release:	1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
+URL: 		http://www.gnome-db.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.xz
-Patch0: libgda-4.2.12-fix-linking.patch
+Patch0:		libgda-4.2.12-fix-linking.patch
 
 BuildRequires:	bison
-BuildRequires:	db-devel
 BuildRequires:	flex
-BuildRequires:	gdbm-devel
-BuildRequires:  gtk+2-devel
-BuildRequires:  unique-devel
-%if %enable_test
-#gw only for make check:
-BuildRequires:  libjson-glib-devel
-BuildRequires: check-devel
-#BuildRequires:  %name
-%endif
-BuildRequires:	libxslt-devel >= 1.0.9
-BuildRequires:	ncurses-devel
-BuildRequires:  openldap2-devel
+BuildRequires:	gtk-doc
 BuildRequires:	intltool
-BuildRequires:	popt-devel
+BuildRequires:	iso-codes
+BuildRequires:	db-devel
+BuildRequires:	gdbm-devel
+BuildRequires:	ncurses-devel
+BuildRequires:	openldap2-devel
 BuildRequires:	postgresql-devel
-BuildRequires:  gnome-vfs2-devel
 BuildRequires:	readline-devel
-#BuildRequires:	scrollkeeper
-BuildRequires:  sqlite3-devel
-BuildRequires:  unixODBC-devel
+BuildRequires:	unixODBC-devel
 BuildRequires:	xbase-devel
-BuildRequires:  libsoup-devel
-BuildRequires:  iso-codes
-BuildRequires:  gobject-introspection-devel
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(gnome-doc-utils}
+BuildRequires:	pkgconfig(gnome-vfs-2.0)
+BuildRequires:	pkgconfig(libsoup-2.4)
+BuildRequires:	pkgconfig(libxslt)
+BuildRequires:	pkgconfig(popt)
+BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	pkgconfig(unique-1.0)
 %ifnarch %arm %mips
-BuildRequires: java-1.6.0-devel
+BuildRequires:	java-1.6.0-devel
 %endif
-BuildRequires: automake1.8
-%if %build_mysql
+%if %{build_mysql}
 BuildRequires:	mysql-devel
 %endif
-%if %build_freetds
+%if %{build_freetds}
 BuildRequires:	freetds-devel
 %endif
-BuildRequires:	gtk-doc
-BuildRequires:	gnome-doc-utils
-#Requires(post):		scrollkeeper
-#Requires(postun):	scrollkeeper
-URL: 		http://www.gnome-db.org/
-Requires: iso-codes
+%if %{enable_test}
+BuildRequires:	pkgconfig(json-glib-1.0)
+BuildRequires:	pkgconfig(check)
+%endif
+
+Requires:	iso-codes
 
 %description
 GNU Data Access is an attempt to provide uniform access to
@@ -93,16 +85,7 @@ Summary:	GNU Data Access Development
 Group: 		System/Libraries
 
 %description -n	%{libname}
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
+This package contains the shared library for %{name}.
 
 %package -n	%{develname}
 Summary:	GNU Data Access Development
@@ -113,16 +96,7 @@ Provides:	%{name}-devel = %{version}-%{release}
 %define _requires_exceptions ^devel.libgda-
 
 %description -n	%{develname}
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
+This package contains the development files for %{name}.
 
 %package	postgres
 Summary:	GDA PostgreSQL Provider
@@ -130,17 +104,6 @@ Group:		Databases
 Requires:	%{name} = %{version}
 
 %description	postgres
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
-
 This package includes the GDA PostgreSQL provider
 
 %package	mysql
@@ -149,17 +112,6 @@ Group:		Databases
 Requires:	%{name} = %{version}
 
 %description	mysql
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
-
 This package includes the GDA MySQL provider
 
 %package	bdb
@@ -168,41 +120,19 @@ Group:		Databases
 Requires:	%{name} = %{version}
 
 %description	bdb
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
-
 This package includes the GDA Berkeley Database provider.
 
-%if %build_freetds
+%if %{build_freetds}
 %package	freetds
 Summary:	GDA FreeTDS Provider
 Group:		Databases
 Requires:	%{name} = %{version}
 
 %description	freetds
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
-
 This package includes the GDA FreeTDS provider.
 %endif
 
-%if %build_mdb
+%if %{build_mdb}
 BuildRequires:	libmdbtools-devel
 %package	mdb
 Summary:	GDA MDB Provider
@@ -210,17 +140,6 @@ Group:		Databases
 Requires:	%{name} = %{version}
 
 %description	mdb
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
-
 This package includes the GDA MDB provider, which can access
 Microsoft Access databases.
 %endif
@@ -232,17 +151,6 @@ Requires:	%{name} = %{version}
 Obsoletes:      gda3.0-sqlite
 
 %description	sqlite
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
-
 This package includes the GDA sqlite provider
 
 %ifnarch %arm %mips
@@ -252,17 +160,6 @@ Group:		Databases
 Requires:	%{name} = %{version}
 
 %description	jdbc
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
-
 This package includes the GDA Java Database provider.
 %endif
 
@@ -272,21 +169,10 @@ Group:		Databases
 Requires:	%{name} = %{version}
 
 %description	ldap
-GNU Data Access is an attempt to provide uniform access to
-different kinds of data sources (databases, information
-servers, mail spools, etc).
-It is a complete architecture that provides all you need to
-access your data.
-
-libgda was part of the GNOME-DB project
-(http://www.gnome-db.org/), but has been
-separated from it to allow non-GNOME applications to be
-developed based on it.
-
 This package includes the GDA LDAP provider
 
 %prep
-%setup -q -n %{pkgname}-%{version}
+%setup -qn %{pkgname}-%{version}
 %apply_patches
 
 %build
@@ -297,50 +183,50 @@ autoreconf -fi
 %if %build_mysql
 	--with-mysql=yes \
 %endif
-%if !%build_freetds
+%if !%{build_freetds}
 	--with-tds=no \
 %endif
-%if !%build_mdb
+%if !%{build_mdb}
 	--with-mdb=no \
 %endif
-	--without-firebird --with-bdb=%_prefix --with-bdb-libdir-name=%_lib
+	--without-firebird \
+	--with-bdb=%_prefix \
+	--with-bdb-libdir-name=%_lib
 
-make
+%make
 
 %install
-rm -rf %{buildroot}
-
-%{makeinstall_std}
+%makeinstall_std
 
 # remove unneeded files
-rm -f %{buildroot}%{_libdir}/libgda-%dirver/*/*.{a,la}
+rm -f %{buildroot}%{_libdir}/libgda-%{api}/*/*.la
 
-%{find_lang} %{pkgname}-%{api} --with-gnome
+%find_lang %{pkgname}-%{api} --with-gnome
 
-%if %enable_test
+%if %{enable_test}
 %check
 make check
 %endif
 
 %files -f %{pkgname}-%{api}.lang
 %doc AUTHORS COPYING README
+%dir %{_sysconfdir}/libgda-%{api}
+%config(noreplace) %_sysconfdir/libgda-%{api}/sales_test.db
+%config(noreplace) %{_sysconfdir}/libgda-%{api}/config
 %{_bindir}/*
-%_mandir/man1/*
-%dir %{_sysconfdir}/libgda-%dirver
-%config(noreplace) %_sysconfdir/libgda-%dirver/sales_test.db
-%config(noreplace) %{_sysconfdir}/libgda-%dirver/config
-%{_datadir}/applications/gda-browser-%api.desktop
-%{_datadir}/applications/gda-control-center-%api.desktop
+%{_datadir}/applications/gda-browser-%{api}.desktop
+%{_datadir}/applications/gda-control-center-%{api}.desktop
 %{_datadir}/pixmaps/gda*
 %{_datadir}/icons/hicolor/*/apps/gda-control-center.*
-%{_datadir}/libgda-%dirver
-%dir %{_libdir}/libgda-%dirver
-%dir %{_libdir}/libgda-%dirver/plugins
-%dir %{_libdir}/libgda-%dirver/providers
-%{_libdir}/libgda-%dirver/plugins/*.xml
-%{_libdir}/libgda-%dirver/plugins/libgda-ui-plugins.so
-%{_libdir}/libgda-%dirver/providers/libgda-web.so
-%{_libdir}/libgda-%dirver/providers/libgda-sqlcipher.so
+%{_datadir}/libgda-%{api}
+%dir %{_libdir}/libgda-%{api}
+%dir %{_libdir}/libgda-%{api}/plugins
+%dir %{_libdir}/libgda-%{api}/providers
+%{_libdir}/libgda-%{api}/plugins/*.xml
+%{_libdir}/libgda-%{api}/plugins/libgda-ui-plugins.so
+%{_libdir}/libgda-%{api}/providers/libgda-web.so
+%{_libdir}/libgda-%{api}/providers/libgda-sqlcipher.so
+%{_mandir}/man1/*
 
 %files -n %{libname}
 %{_libdir}/libgda-%{api}.so.%{major}*
@@ -351,7 +237,7 @@ make check
 %{_libdir}/girepository-1.0/Gdaui-%{api}.typelib
 
 %files -n %{develname}
-%doc %{_datadir}/gtk-doc/html/libgda-%dirver/
+%doc %{_datadir}/gtk-doc/html/libgda-%{api}/
 %doc %{_datadir}/gtk-doc/html/gda-browser
 %{_libdir}/libgda-%{api}.so
 %{_libdir}/libgda-report-%{api}.so
@@ -359,40 +245,40 @@ make check
 %{_libdir}/libgda-xslt-%{api}.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
-%{_datadir}/gir-1.0/Gda-%api.gir
-%{_datadir}/gir-1.0/Gdaui-%api.gir
+%{_datadir}/gir-1.0/Gda-%{api}.gir
+%{_datadir}/gir-1.0/Gdaui-%{api}.gir
 %{_datadir}/gnome/help/gda-browser
 
 %files sqlite
-%{_libdir}/libgda-%dirver/providers/libgda-sqlite.so
+%{_libdir}/libgda-%{api}/providers/libgda-sqlite.so
 
 %files postgres
-%{_libdir}/libgda-%dirver/providers/libgda-postgres.so
+%{_libdir}/libgda-%{api}/providers/libgda-postgres.so
 
 %files bdb
-%{_libdir}/libgda-%dirver/providers/libgda-bdb.so
+%{_libdir}/libgda-%{api}/providers/libgda-bdb.so
 
-%if %build_mysql
+%if %{build_mysql}
 %files mysql
-%{_libdir}/libgda-%dirver/providers/libgda-mysql.so
+%{_libdir}/libgda-%{api}/providers/libgda-mysql.so
 %endif
 
-%if %build_freetds
+%if %{build_freetds}
 %files freetds
-%{_libdir}/libgda-%dirver/providers/libgda-freetds.so
+%{_libdir}/libgda-%{api}/providers/libgda-freetds.so
 %endif
 
-%if %build_mdb
+%if %{build_mdb}
 %files mdb
-%{_libdir}/libgda-%dirver/providers/libgda-mdb.so
+%{_libdir}/libgda-%{api}/providers/libgda-mdb.so
 %endif
 
 %ifnarch %arm %mips
 %files jdbc
-%{_libdir}/libgda-%dirver/providers/libgda-jdbc.so
-%{_libdir}/libgda-%dirver/providers/gdaprovider-4.0.jar
+%{_libdir}/libgda-%{api}/providers/libgda-jdbc.so
+%{_libdir}/libgda-%{api}/providers/gdaprovider-4.0.jar
 %endif
 
 %files ldap
-%{_libdir}/libgda-%dirver/providers/libgda-ldap.so
+%{_libdir}/libgda-%{api}/providers/libgda-ldap.so
 
