@@ -36,7 +36,7 @@ BuildRequires:	iso-codes
 BuildRequires:	db-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openldap2-devel
+BuildRequires:	openldap-devel
 BuildRequires:	postgresql-devel
 BuildRequires:	readline-devel
 BuildRequires:	unixODBC-devel
