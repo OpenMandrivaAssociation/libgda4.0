@@ -93,7 +93,6 @@ Group: 		Development/Databases
 Requires:	%{libname} = %{version}
 Provides:	gda4.0-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-%define _requires_exceptions ^devel.libgda-
 
 %description -n	%{develname}
 This package contains the development files for %{name}.
