@@ -172,7 +172,7 @@ This package includes the GDA LDAP provider
 
 %prep
 %setup -qn %{pkgname}-%{version}
-%apply_patches
+%autopatch -p1
 
 %build
 #gw patch0:
