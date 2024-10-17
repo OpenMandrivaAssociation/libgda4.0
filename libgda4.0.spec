@@ -24,7 +24,7 @@ Version:	4.2.13
 Release:	1
 License: 	GPLv2+ and LGPLv2+
 Group: 		Databases
-URL: 		http://www.gnome-db.org/
+URL: 		https://www.gnome-db.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.xz
 Patch0:		libgda-4.2.12-fix-linking.patch
 
